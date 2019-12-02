@@ -25,12 +25,6 @@ class MyPatch extends CGFobject {
     }
 
     changeCoords(s, t){
-        this.length_s = s;
-		this.length_t = t;
-		this.updateTexCoords([0, 1/this.length_t,
-			1/this.length_s, 1/this.length_t,
-			0, 0,
-			1/this.length_s, 0]);
 	} 
     
     display()

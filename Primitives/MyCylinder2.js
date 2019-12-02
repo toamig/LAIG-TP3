@@ -65,19 +65,6 @@ class MyCylinder2 extends CGFobject {
     }
     
     changeCoords(s, t){
-		this.length_s = s;
-		this.length_t = t;
-		var newCoords = []
-		var tt = 0
-		for(var i = 0; i < this.stacks + 1; i++){
-			var ss = 0
-			for(var j = 0; j < this.slices + 1; j++){
-				newCoords.push(ss/this.length_s,tt/this.length_t);
-				ss += this.delta_s;
-			}
-			tt += this.delta_t;
-		}
-		this.updateTexCoords(newCoords);
 	} 
 
 	display() {
