@@ -22,14 +22,14 @@ class MyPlane extends CGFobject {
     createNurbs(){
         this.makeSurface(1, // degree on U: 2 control vertexes U
             1, // degree on V: 2 control vertexes on V
-            [	[
+            [	
+                [
                     [ 0.5, 0.0, -0.5, 1 ],
                     [ 0.5, 0.0,  0.5, 1 ]							 
                 ],
                 [
                     [-0.5, 0.0, -0.5, 1 ],
                     [-0.5, 0.0,  0.5, 1 ]
-                    
                 ]
             ] 
             );

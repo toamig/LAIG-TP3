@@ -1,0 +1,334 @@
+<lxs>
+    <scene root="root" axis_length="15.0"/>
+
+    <views default="defaultCamera">
+        <perspective id="defaultCamera" near="0.1" far="500" angle="45">
+            <from x="40" y="15" z="40" />
+            <to x="0" y="-2" z="0" />
+        </perspective>
+        <perspective id="houseCamera" near="0.1" far="500" angle="30">
+            <from x="50" y="10" z="16" />
+            <to x="0" y="2" z="16" />
+        </perspective>
+        <ortho id="snowmanCamera" near="1" far="50" left="-4" right="4" top="2" bottom="-4">
+            <from x="45" y="0" z="22"/>
+            <to x="21" y="4" z="6"/>
+        </ortho>
+        <perspective id="securityCamera" near="0.1" far="500" angle="45">
+            <from x="45" y="13" z="-5" />
+            <to x="13" y="3" z="15" />
+        </perspective>
+    </views>
+
+    <globals>
+        <ambient r="0.5" g="0.5" b="0.5" a="1" />
+        <background r="0.8" g="0.9" b="1" a="1" />
+    </globals>
+
+    <lights>
+        <omni id="day" enabled="1">
+            <location x="25" y="30" z="25" w="1" />
+            <ambient r="0.9" g="0.8" b="0.6" a="1" />
+            <diffuse r="0.9" g="0.8" b="0.6" a="1" />
+            <specular r="0.9" g="0.8" b="0.6" a="1" />
+            <attenuation constant="1" linear="0" quadratic="0" />
+        </omni>
+        <omni id="night" enabled="0">
+            <location x="29" y="29" z="-29" w="1" />
+            <ambient r="0.1" g="0.35" b="0.65" a="0.2" />
+            <diffuse r="0.1" g="0.35" b="0.65" a="0.2" />
+            <specular r="0.1" g="0.35" b="0.65" a="0.2" />
+            <attenuation constant="1" linear="0" quadratic="0" />
+        </omni>
+        <omni id="fire" enabled="0">
+            <location x="25" y="0" z="25" w="1" />
+            <ambient r="0.9" g="0.6" b="0.1" a="1" />
+            <diffuse r="0.9" g="0.6" b="0.1" a="1" />
+            <specular r="0.9" g="0.6" b="0.1" a="1" />
+            <attenuation constant="0" linear="0.3" quadratic="0" />
+        </omni>
+    </lights>
+
+    <textures>
+        <texture id="trunk" file="../scenes/images/birchWood.png" />
+        <texture id="snow" file="../scenes/images/snow.png" />
+        <texture id="leaves" file="../scenes/images/snowleaves.jpg"/>
+        <texture id="housefront" file="../scenes/images/houseFront.png"/>
+        <texture id="houseside" file="../scenes/images/houseSide.png"/>
+        <texture id="houseback" file="../scenes/images/houseBack.png"/>
+        <texture id="stick" file="../scenes/images/bark.jpg"/>
+        <texture id="carrot" file="../scenes/images/carrot.jpg"/>
+        <texture id="roof" file="../scenes/images/roof.jpg"/>
+        <texture id="snowroof" file="../scenes/images/snowroof.jpg" />
+        <texture id="black" file="../scenes/images/black.jpg"/>
+        <texture id="fire" file="../scenes/images/fire.jpg" />
+        <texture id="rock" file="../scenes/images/rock.jpg" />
+    </textures>
+
+    <materials>
+        <material id="none" shininess = "100">
+            <emission r="0.0" g="0.0" b="0.0" a="1" />
+            <ambient r="0.5" g="0.5" b="0.5" a="1" />
+            <diffuse r="0.0" g="0.0" b="0.0" a="1" />
+            <specular r="0.0" g="0.0" b="0.0" a="1" />
+        </material>
+        <material id="snow" shininess = "100">
+            <emission r="0.0" g="0.0" b="0.0" a="1" />
+            <ambient r="0.5" g="0.5" b="0.5" a="1" />
+            <diffuse r="0.6" g="0.6" b="0.6" a="1" />
+            <specular r="0.2" g="0.2" b="0.2" a="1" />
+        </material>
+        <material id="fire" shininess = "100">
+            <emission r="0.9" g="0.6" b="0.1" a="1" />
+            <ambient r="0.9" g="0.6" b="0.1" a="1" />
+            <diffuse r="0.9" g="0.6" b="0.1" a="1" />
+            <specular r="0.9" g="0.6" b="0.1" a="1" />
+        </material>
+        <material id="tree" shininess = "100">
+            <emission r="0.0" g="0.0" b="0.0" a="1" />
+            <ambient r="0.5" g="0.5" b="0.5" a="1" />
+            <diffuse r="0.6" g="0.6" b="0.6" a="1" />
+            <specular r="0.2" g="0.2" b="0.2" a="1" />
+        </material>
+        <material id="specularMaterial" shininess = "25">
+            <emission r="0.0" g="0.0" b="0.0" a="1" />
+            <ambient r="0.5" g="0.5" b="0.5" a="1" />
+            <diffuse r="0.3" g="0.3" b="0.3" a="1" />
+            <specular r="0.9" g="0.9" b="0.9" a="1" />
+        </material>
+        <material id="diffuseMaterial" shininess = "100">
+            <emission r="0.0" g="0.0" b="0.0" a="1" />
+            <ambient r="0.5" g="0.5" b="0.5" a="1" />
+            <diffuse r="0.9" g="0.9" b="0.9" a="1" />
+            <specular r="0.3" g="0.3" b="0.3" a="1" />
+        </material>
+    </materials>
+
+    <transformations>
+        <transformation id="trans1">
+            <translate x="0" y="0" z="0.5" />
+        </transformation>
+        <transformation id="trans2">
+            <translate x="0" y="0" z="-0.5" />
+            <rotate axis="x" angle="180" />
+        </transformation>
+        <transformation id="trans3">
+            <translate x="0" y="0.5" z="0" />
+            <rotate axis="x" angle="-90" />
+        </transformation>
+        <transformation id="trans4">
+            <translate x="0" y="-0.5" z="0" />
+            <rotate axis="x" angle="90" />
+        </transformation>
+        <transformation id="trans5">
+            <translate x="0.5" y="0" z="0" />
+            <rotate axis="y" angle="90" />
+        </transformation>
+        <transformation id="trans6">
+            <translate x="-0.5" y="0" z="0" />
+            <rotate axis="y" angle="-90" />
+        </transformation>
+        <transformation id="stick">
+            <translate x="0" y="1.4" z="0.2" />
+            <rotate axis="x" angle="55"/>
+            <scale x="0.15" y="0.15" z="1.7" />
+        </transformation>
+    </transformations>
+
+    <animations>
+        <animation id="snowmanAnimation">
+            <keyframe instant="4">
+                <translate x="5" y="0" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+            <keyframe instant="6">
+                <translate x="5" y="0" z="0" />
+                <rotate angle_x="0" angle_y="-90" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+            <keyframe instant="11">
+                <translate x="5" y="0" z="14" />
+                <rotate angle_x="0" angle_y="-90" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+            <keyframe instant="14">
+                <translate x="5" y="0" z="14" />
+                <rotate angle_x="0" angle_y="-90" angle_z="0" />
+                <scale x="0.7" y="0.7" z="0.7" />
+            </keyframe>
+            <keyframe instant="16">
+                <translate x="5" y="0" z="14" />
+                <rotate angle_x="0" angle_y="-270" angle_z="0" />
+                <scale x="0.7" y="0.7" z="0.7" />
+            </keyframe>
+            <keyframe instant="20">
+                <translate x="5" y="0" z="0" />
+                <rotate angle_x="0" angle_y="-270" angle_z="0" />
+                <scale x="0.7" y="0.7" z="0.7" />
+            </keyframe>
+            <keyframe instant="21">
+                <translate x="5" y="0" z="0" />
+                <rotate angle_x="0" angle_y="-180" angle_z="0" />
+                <scale x="0.7" y="0.7" z="0.7" />
+            </keyframe>
+            <keyframe instant="25">
+                <translate x="0" y="0" z="0" />
+                <rotate angle_x="0" angle_y="-180" angle_z="0" />
+                <scale x="0.7" y="0.7" z="0.7" />
+            </keyframe>
+            <keyframe instant="27">
+                <translate x="0" y="0" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="0.7" y="0.7" z="0.8" />
+            </keyframe>
+        </animation>
+
+        <animation id="scaleFire">
+            <keyframe instant="5">
+                <translate x="0" y="0" z="0" />
+                <rotate angle_x="0" angle_y="-90" angle_z="0" />
+                <scale x="1" y="1.2" z="1" />
+            </keyframe>
+            <keyframe instant="8">
+                <translate x="0" y="0" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe> 
+             <keyframe instant="11">
+                <translate x="0" y="0" z="0" />
+                <rotate angle_x="0" angle_y="-90" angle_z="0" />
+                <scale x="1.1" y="1.1" z="1.1" />
+            </keyframe>
+            <keyframe instant="14">
+                <translate x="0" y="0" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+            <keyframe instant="16">
+                <translate x="0" y="0" z="0" />
+                <rotate angle_x="0" angle_y="-90" angle_z="0" />
+                <scale x="1.1" y="1.3" z="1.1" />
+            </keyframe> 
+             <keyframe instant="19">
+                <translate x="0" y="0" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+            <keyframe instant="21">
+                <translate x="0" y="0" z="0" />
+                <rotate angle_x="0" angle_y="-90" angle_z="0" />
+                <scale x="1" y="1.1" z="1" />
+            </keyframe>
+            <keyframe instant="25">
+                <translate x="0" y="0" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+            <keyframe instant="30">
+                <translate x="0" y="0" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="0" y="0" z="0" />
+            </keyframe>
+        </animation>
+
+        <animation id="treeAnimation1">
+            <keyframe instant="20">
+                <translate x="0" y="0" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1.2" y="1.4" z="1.2" />
+            </keyframe>
+        </animation>
+
+        <animation id="treeAnimation2">
+            <keyframe instant="23">
+                <translate x="0" y="0" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1.5" y="1.6" z="1.5" />
+            </keyframe>
+        </animation>
+
+        <animation id="treeAnimation3">
+            <keyframe instant="25">
+                <translate x="0" y="0" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1.8" y="2" z="1.9" />
+            </keyframe>
+        </animation>
+
+        <animation id="treeAnimation4">
+            <keyframe instant="17">
+                <translate x="0" y="0" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1.4" y="1.5" z="1.4" />
+            </keyframe>
+        </animation>
+    </animations>
+    
+    <primitives>
+        <primitive id="plane">
+            <plane npartsU="10" npartsV="10" />
+        </primitive>
+        <primitive id="rectangle">
+            <rectangle x1="-0.5" y1="-0.5" x2="0.5" y2="0.5" />
+        </primitive>
+        <primitive id="torus">
+            <torus inner="0.25" outer="1.2" slices="30" loops="30" />
+        </primitive>
+        <primitive id="cylinder">
+            <cylinder base="1" top="1" height="1" slices="30" stacks="30" />
+        </primitive>
+        <primitive id="cylinderNurbs">
+            <cylinder2 base="1" top="1" height="1" slices="30" stacks="30" />
+        </primitive>
+        <primitive id="cone">
+            <cylinder base="0.5" top="0" height="1" slices="30" stacks="30" />
+        </primitive>
+        <primitive id="sphere">
+            <sphere radius="1" slices="30" stacks="30" />
+        </primitive>
+        <primitive id="triangle">
+            <triangle x1="0.5" y1="0" z1="0" x2="-0.5" y2="0" z2="0" x3="0" y3="1" z3="0" />
+        </primitive>
+        <primitive id="board">
+            <board/>
+        </primitive>
+        <primitive id="patch">
+            <patch npointsU="2" npointsV="2" npartsU="10" npartsV="10" > 
+                <controlpoint xx="0.5" yy="0.0" zz="-0.5" />
+                <controlpoint xx="0.5" yy="0.0" zz="0.5" />
+                <controlpoint xx="-0.5" yy="0.0" zz="-0.5" />
+                <controlpoint xx="-0.5" yy="0.0" zz="0.5" />
+            </patch>
+        </primitive>
+    </primitives>
+
+    <components>
+        <component id="root">
+            <transformation>
+                <translate x="0" y="0" z="0" />
+            </transformation>
+            <materials>
+                <material id="none" />
+            </materials>
+            <texture id="none" />
+            <children>
+                <componentref id="board" />
+            </children>
+        </component>
+
+        <component id="board">
+            <transformation>
+                <scale x="1" y="1" z="1" />
+            </transformation>
+            <materials>
+                <material id="none" />
+            </materials>
+            <texture id="none" />
+            <children>
+                <primitiveref id="board" />
+            </children>
+        </component>
+        
+    </components>
+</lxs>

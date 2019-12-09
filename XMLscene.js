@@ -39,7 +39,6 @@ class XMLscene extends CGFscene {
         this.setUpdatePeriod(50);
 
         this.RTT = new CGFtextureRTT(this, this.gl.canvas.width, this.gl.canvas.height);
-        this.rectangle = new MySecurityCamera(this);
 
         //Variables connected to MyInterface
         this.activeCamera = 'defaultCamera';
@@ -159,7 +158,6 @@ class XMLscene extends CGFscene {
             this.graph.animations[key].update(this.deltaTime);
         }
 
-		this.rectangle.securityShader.setUniformsValues({ timeFactor: time / 100 % (1000*Math.PI) });
     }
 
     /**
@@ -177,7 +175,6 @@ class XMLscene extends CGFscene {
             this.render(this.InterfaceCamera);
 
         this.gl.disable(this.gl.DEPTH_TEST);
-        this.rectangle.display();
         this.gl.enable(this.gl.DEPTH_TEST);   
         
         
