@@ -34,9 +34,6 @@ class MyInterface extends CGFinterface {
 
         var viewIds = Object.keys(views);
         viewsGroup.add(this.scene, 'activeCamera', viewIds).name('Camera').onChange(this.scene.updateView.bind(this.scene));
-
-        var viewIds = Object.keys(views);
-        viewsGroup.add(this.scene, 'securityCam', viewIds).name('Security Camera').onChange(this.scene.updateView.bind(this.scene));
         
     }
 

@@ -14,10 +14,6 @@
             <from x="45" y="0" z="22"/>
             <to x="21" y="4" z="6"/>
         </ortho>
-        <perspective id="securityCamera" near="0.1" far="500" angle="45">
-            <from x="45" y="13" z="-5" />
-            <to x="13" y="3" z="15" />
-        </perspective>
     </views>
 
     <globals>
@@ -40,29 +36,10 @@
             <specular r="0.1" g="0.35" b="0.65" a="0.2" />
             <attenuation constant="1" linear="0" quadratic="0" />
         </omni>
-        <omni id="fire" enabled="0">
-            <location x="25" y="0" z="25" w="1" />
-            <ambient r="0.9" g="0.6" b="0.1" a="1" />
-            <diffuse r="0.9" g="0.6" b="0.1" a="1" />
-            <specular r="0.9" g="0.6" b="0.1" a="1" />
-            <attenuation constant="0" linear="0.3" quadratic="0" />
-        </omni>
     </lights>
 
     <textures>
-        <texture id="trunk" file="../scenes/images/birchWood.png" />
-        <texture id="snow" file="../scenes/images/snow.png" />
-        <texture id="leaves" file="../scenes/images/snowleaves.jpg"/>
-        <texture id="housefront" file="../scenes/images/houseFront.png"/>
-        <texture id="houseside" file="../scenes/images/houseSide.png"/>
-        <texture id="houseback" file="../scenes/images/houseBack.png"/>
-        <texture id="stick" file="../scenes/images/bark.jpg"/>
-        <texture id="carrot" file="../scenes/images/carrot.jpg"/>
-        <texture id="roof" file="../scenes/images/roof.jpg"/>
-        <texture id="snowroof" file="../scenes/images/snowroof.jpg" />
-        <texture id="black" file="../scenes/images/black.jpg"/>
-        <texture id="fire" file="../scenes/images/fire.jpg" />
-        <texture id="rock" file="../scenes/images/rock.jpg" />
+        <texture id="trunk" file="../scenes/images/cell.jpg" />
     </textures>
 
     <materials>
@@ -107,31 +84,6 @@
     <transformations>
         <transformation id="trans1">
             <translate x="0" y="0" z="0.5" />
-        </transformation>
-        <transformation id="trans2">
-            <translate x="0" y="0" z="-0.5" />
-            <rotate axis="x" angle="180" />
-        </transformation>
-        <transformation id="trans3">
-            <translate x="0" y="0.5" z="0" />
-            <rotate axis="x" angle="-90" />
-        </transformation>
-        <transformation id="trans4">
-            <translate x="0" y="-0.5" z="0" />
-            <rotate axis="x" angle="90" />
-        </transformation>
-        <transformation id="trans5">
-            <translate x="0.5" y="0" z="0" />
-            <rotate axis="y" angle="90" />
-        </transformation>
-        <transformation id="trans6">
-            <translate x="-0.5" y="0" z="0" />
-            <rotate axis="y" angle="-90" />
-        </transformation>
-        <transformation id="stick">
-            <translate x="0" y="1.4" z="0.2" />
-            <rotate axis="x" angle="55"/>
-            <scale x="0.15" y="0.15" z="1.7" />
         </transformation>
     </transformations>
 
@@ -183,91 +135,14 @@
                 <scale x="0.7" y="0.7" z="0.8" />
             </keyframe>
         </animation>
-
-        <animation id="scaleFire">
-            <keyframe instant="5">
-                <translate x="0" y="0" z="0" />
-                <rotate angle_x="0" angle_y="-90" angle_z="0" />
-                <scale x="1" y="1.2" z="1" />
-            </keyframe>
-            <keyframe instant="8">
-                <translate x="0" y="0" z="0" />
-                <rotate angle_x="0" angle_y="0" angle_z="0" />
-                <scale x="1" y="1" z="1" />
-            </keyframe> 
-             <keyframe instant="11">
-                <translate x="0" y="0" z="0" />
-                <rotate angle_x="0" angle_y="-90" angle_z="0" />
-                <scale x="1.1" y="1.1" z="1.1" />
-            </keyframe>
-            <keyframe instant="14">
-                <translate x="0" y="0" z="0" />
-                <rotate angle_x="0" angle_y="0" angle_z="0" />
-                <scale x="1" y="1" z="1" />
-            </keyframe>
-            <keyframe instant="16">
-                <translate x="0" y="0" z="0" />
-                <rotate angle_x="0" angle_y="-90" angle_z="0" />
-                <scale x="1.1" y="1.3" z="1.1" />
-            </keyframe> 
-             <keyframe instant="19">
-                <translate x="0" y="0" z="0" />
-                <rotate angle_x="0" angle_y="0" angle_z="0" />
-                <scale x="1" y="1" z="1" />
-            </keyframe>
-            <keyframe instant="21">
-                <translate x="0" y="0" z="0" />
-                <rotate angle_x="0" angle_y="-90" angle_z="0" />
-                <scale x="1" y="1.1" z="1" />
-            </keyframe>
-            <keyframe instant="25">
-                <translate x="0" y="0" z="0" />
-                <rotate angle_x="0" angle_y="0" angle_z="0" />
-                <scale x="1" y="1" z="1" />
-            </keyframe>
-            <keyframe instant="30">
-                <translate x="0" y="0" z="0" />
-                <rotate angle_x="0" angle_y="0" angle_z="0" />
-                <scale x="0" y="0" z="0" />
-            </keyframe>
-        </animation>
-
-        <animation id="treeAnimation1">
-            <keyframe instant="20">
-                <translate x="0" y="0" z="0" />
-                <rotate angle_x="0" angle_y="0" angle_z="0" />
-                <scale x="1.2" y="1.4" z="1.2" />
-            </keyframe>
-        </animation>
-
-        <animation id="treeAnimation2">
-            <keyframe instant="23">
-                <translate x="0" y="0" z="0" />
-                <rotate angle_x="0" angle_y="0" angle_z="0" />
-                <scale x="1.5" y="1.6" z="1.5" />
-            </keyframe>
-        </animation>
-
-        <animation id="treeAnimation3">
-            <keyframe instant="25">
-                <translate x="0" y="0" z="0" />
-                <rotate angle_x="0" angle_y="0" angle_z="0" />
-                <scale x="1.8" y="2" z="1.9" />
-            </keyframe>
-        </animation>
-
-        <animation id="treeAnimation4">
-            <keyframe instant="17">
-                <translate x="0" y="0" z="0" />
-                <rotate angle_x="0" angle_y="0" angle_z="0" />
-                <scale x="1.4" y="1.5" z="1.4" />
-            </keyframe>
-        </animation>
     </animations>
     
     <primitives>
         <primitive id="plane">
             <plane npartsU="10" npartsV="10" />
+        </primitive>
+        <primitive id="pieces">
+            <pieces />
         </primitive>
         <primitive id="rectangle">
             <rectangle x1="-0.5" y1="-0.5" x2="0.5" y2="0.5" />
@@ -313,6 +188,7 @@
             </materials>
             <texture id="none" />
             <children>
+                <primitiveref id="pieces" />
                 <componentref id="board" />
             </children>
         </component>

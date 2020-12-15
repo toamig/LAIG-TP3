@@ -35,8 +35,11 @@ class XMLscene extends CGFscene {
         this.gl.enable(this.gl.CULL_FACE);
         this.gl.depthFunc(this.gl.LEQUAL);
 
+        this.rosette = new CGFOBJModel(this, 'scenes/models/round_rosette_022.obj');
+		this.plant = new CGFOBJModel(this, 'scenes/models/boxwood_plant.obj');
+
         this.axis = new CGFaxis(this);
-        this.setUpdatePeriod(50);
+        this.setUpdatePeriod(30);
 
         this.RTT = new CGFtextureRTT(this, this.gl.canvas.width, this.gl.canvas.height);
 
@@ -131,6 +134,7 @@ class XMLscene extends CGFscene {
      * As loading is asynchronous, this may be called already after the application has started the run loop
      */
     onGraphLoaded() {
+
         this.axis = new CGFaxis(this, this.graph.referenceLength);
 
         this.gl.clearColor(this.graph.background[0], this.graph.background[1], this.graph.background[2], this.graph.background[3]);
@@ -145,8 +149,10 @@ class XMLscene extends CGFscene {
 
         this.interface.addLightController(this.graph.lights);
 
-        this.sceneInited = true;
+        this.game = new Game(this);
+        this.gameInterface = new GameInterface(this,this.game);
 
+        this.sceneInited = true;
         
     }
 
@@ -158,18 +164,44 @@ class XMLscene extends CGFscene {
             this.graph.animations[key].update(this.deltaTime);
         }
 
+        this.gameInterface.updateScore();
+
+    }
+
+    logPicking() {
+		if (this.pickMode == false) {
+			if (this.pickResults != null && this.pickResults.length > 0) {
+				for (var i = 0; i < this.pickResults.length; i++) {
+					var obj = this.pickResults[i][0];
+					if (obj) {
+                        var customId = this.pickResults[i][1];
+                        if (!this.game.pieceSelected & customId <= 24){
+                            this.clickAction(customId);
+                        }
+                        else if (customId > 24){
+                            this.clickAction(customId);
+                        }
+						console.log("Picked object: " + obj + ", with pick id " + customId);						
+					}
+				}
+				this.pickResults.splice(0, this.pickResults.length);
+			}
+		}
+    }
+
+    clickAction(id){
+        if(id <= 60 && !this.game.terminated){
+            this.game.play(id);
+        }
     }
 
     /**
      * Displays rendered scene.
      */
     display() {
-        
-        this.RTT.attachToFrameBuffer();
-        if(this.sceneInited)
-            this.updateSecurityView();
-            this.render(this.security);
-        this.RTT.detachFromFrameBuffer();
+
+        this.logPicking();
+        this.clearPickRegistration();
 
         if(this.sceneInited)
             this.render(this.InterfaceCamera);
@@ -177,13 +209,21 @@ class XMLscene extends CGFscene {
         this.gl.disable(this.gl.DEPTH_TEST);
         this.gl.enable(this.gl.DEPTH_TEST);   
         
-        
+        this.displayGameInterface();
     }
+
+    displayGameInterface(){
+        if(this.gameInterface){
+            this.gameInterface.display();
+        }
+    }
+
 
     /**
      * Renders the scene.
      */
     render(currentCamera) {
+
         // ---- BEGIN Background, camera and axis setup
         if(this.sceneInited)
             this.camera = currentCamera;
@@ -202,6 +242,9 @@ class XMLscene extends CGFscene {
 
         this.pushMatrix();
         this.axis.display();
+
+        //this.rosette.display();
+        //this.plant.display();
 
         for (var key in this.lightsOn) {
             var i = this.keyToLight[key];

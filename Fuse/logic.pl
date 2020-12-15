@@ -27,28 +27,28 @@ check_till_position_right(TargetX,_,TargetX,_).
 check_till_position_right(StartX,StartY,TargetX,Board):-
     X is StartX + 1,
     get_piece(Board,X,StartY,Piece),
-    (Piece == ' ' ; X == TargetX),
+    (Piece == '-' ; X == TargetX),
     check_till_position_right(X,StartY,TargetX,Board).
 
 check_till_position_left(TargetX,_,TargetX,_).
 check_till_position_left(StartX,StartY,TargetX,Board):-
     X is StartX - 1,
     get_piece(Board,X,StartY,Piece),
-    (Piece == ' ' ; X == TargetX),
+    (Piece == '-' ; X == TargetX),
     check_till_position_left(X,StartY,TargetX,Board).
 
 check_till_position_up(_,TargetY,TargetY,_).
 check_till_position_up(StartX,StartY,TargetY,Board):-
     Y is StartY - 1,
     get_piece(Board,StartX,Y,Piece),
-    (Piece == ' ' ; Y == TargetY),
+    (Piece == '-' ; Y == TargetY),
     check_till_position_up(StartX,Y,TargetY,Board).
 
 check_till_position_down(_,TargetY,TargetY,_).
 check_till_position_down(StartX,StartY,TargetY,Board):-
     Y is StartY + 1,
     get_piece(Board,StartX,Y,Piece),
-    (Piece == ' ' ; Y == TargetY),
+    (Piece == '-' ; Y == TargetY),
     check_till_position_down(StartX,Y,TargetY,Board).
 
 
@@ -58,7 +58,7 @@ push_piece_right(Board,TargetX,TargetY,Piece,NewBoard):-
     replace(Board,TargetX,TargetY,Piece,AuxBoard),
     NewX is TargetX + 1,
     NewX =< 6,
-    ((PushedPiece == ' ',
+    ((PushedPiece == '-',
     append(AuxBoard,[],NewBoard));
     push_piece_right(AuxBoard,NewX,TargetY,PushedPiece,NewBoard)).
 
@@ -67,7 +67,7 @@ push_piece_down(Board,TargetX,TargetY,Piece,NewBoard):-
     replace(Board,TargetX,TargetY,Piece,AuxBoard),
     NewY is TargetY + 1,
     NewY =< 6,
-    ((PushedPiece == ' ',
+    ((PushedPiece == '-',
     append(AuxBoard,[],NewBoard));
     push_piece_down(AuxBoard,TargetX,NewY,PushedPiece,NewBoard)).
 
@@ -76,7 +76,7 @@ push_piece_up(Board,TargetX,TargetY,Piece,NewBoard):-
     replace(Board,TargetX,TargetY,Piece,AuxBoard),
     NewY is TargetY - 1,
     NewY =< 6,
-    ((PushedPiece == ' ',
+    ((PushedPiece == '-',
     append(AuxBoard,[],NewBoard));
     push_piece_up(AuxBoard,TargetX,NewY,PushedPiece,NewBoard)).
 
@@ -85,7 +85,7 @@ push_piece_left(Board,TargetX,TargetY,Piece,NewBoard):-
     replace(Board,TargetX,TargetY,Piece,AuxBoard),
     NewX is TargetX - 1,
     NewX =< 6,
-    ((PushedPiece == ' ',
+    ((PushedPiece == '-',
     append(AuxBoard,[],NewBoard));
     push_piece_left(AuxBoard,NewX,TargetY,PushedPiece,NewBoard)).
 
@@ -93,24 +93,24 @@ push_piece_left(Board,TargetX,TargetY,Piece,NewBoard):-
 
 aux_move(Board, 0, StartY, Steps, Piece, NewBoard) :-
     get_piece(Board, Steps, StartY, PushedPiece),
-    ((PushedPiece == ' ', replace(Board, Steps, StartY, Piece, NewBoard), !);
+    ((PushedPiece == '-', replace(Board, Steps, StartY, Piece, NewBoard), !);
     push_piece_right(Board, Steps, StartY, Piece, NewBoard)).
 
 aux_move(Board, StartX, 0, Steps, Piece, NewBoard) :-
     get_piece(Board, StartX, Steps, PushedPiece),
-    ((PushedPiece == ' ', replace(Board, StartX, Steps, Piece, NewBoard), !);
+    ((PushedPiece == '-', replace(Board, StartX, Steps, Piece, NewBoard), !);
     push_piece_down(Board, StartX, Steps, Piece, NewBoard)).
 
 aux_move(Board, StartX, 7, Steps, Piece, NewBoard) :-
     Target is 7 - Steps,
     get_piece(Board, StartX, Target, PushedPiece),
-    ((PushedPiece == ' ', replace(Board, StartX, Target, Piece, NewBoard), !);
+    ((PushedPiece == '-', replace(Board, StartX, Target, Piece, NewBoard), !);
     push_piece_up(Board, StartX, Target, Piece, NewBoard)).
 
 aux_move(Board, 7, StartY, Steps, Piece, NewBoard) :-
     Target is 7 - Steps,
     get_piece(Board, Target, StartY, PushedPiece),
-    ((PushedPiece == ' ', replace(Board, Target, StartY, Piece, NewBoard), !);
+    ((PushedPiece == '-', replace(Board, Target, StartY, Piece, NewBoard), !);
     push_piece_left(Board, Target, StartY, Piece, NewBoard)).
 
 
@@ -121,7 +121,7 @@ move([0, StartY, Steps], Board, NewBoard) :-
     get_piece(Board, 0, StartY, Piece),
     (Piece == 'i' ; Piece == 'b'),
     aux_move(Board, 0, StartY, Steps, Piece, AuxBoard),
-    replace(AuxBoard, 0, StartY, 'P', NewBoard).
+    replace(AuxBoard, 0, StartY, 'p', NewBoard).
 
 move([StartX, 0, Steps], Board, NewBoard) :-
     between(1, 6, Steps),
@@ -130,7 +130,7 @@ move([StartX, 0, Steps], Board, NewBoard) :-
     get_piece(Board, StartX, 0, Piece),
     (Piece == 'i' ; Piece == 'b'),
     aux_move(Board, StartX, 0, Steps, Piece, AuxBoard),
-    replace(AuxBoard, StartX, 0, 'P', NewBoard).
+    replace(AuxBoard, StartX, 0, 'p', NewBoard).
 
 move([StartX, 7, Steps], Board, NewBoard) :-
     between(1, 6, Steps),
@@ -140,7 +140,7 @@ move([StartX, 7, Steps], Board, NewBoard) :-
     get_piece(Board, StartX, 7, Piece),
     (Piece == 'i' ; Piece == 'b'),
     aux_move(Board, StartX, 7, Steps, Piece, AuxBoard),
-    replace(AuxBoard, StartX, 7, 'P', NewBoard).
+    replace(AuxBoard, StartX, 7, 'p', NewBoard).
 
 move([7, StartY, Steps], Board, NewBoard) :-
     between(1, 6, Steps),
@@ -150,7 +150,7 @@ move([7, StartY, Steps], Board, NewBoard) :-
     check_till_position_left(7, StartY, Target, Board),
     (Piece == 'i' ; Piece == 'b'),
     aux_move(Board, 7, StartY, Steps, Piece, AuxBoard),
-    replace(AuxBoard, 7, StartY, 'P', NewBoard).
+    replace(AuxBoard, 7, StartY, 'p', NewBoard).
 
 
 %game_loop
@@ -161,6 +161,9 @@ move([7, StartY, Steps], Board, NewBoard) :-
 
 %possibleMoves
 
+
+valid_moves_piece(Board, [X,Y], ListOfMoves) :-
+    setof(NewBoard, Steps^move([X, Y, Steps], Board, NewBoard), ListOfMoves).
 
 valid_moves(Board, Player, ListOfMoves) :-
     get_player_piece(Player, PlayerPiece),

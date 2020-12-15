@@ -12,6 +12,8 @@ function getUrlVars() {
 }	 
 //Include additional files here
 serialInclude(['../lib/CGF.js',
+                'Fuse/Connection.js',
+                'Fuse/Game.js',
                 'XMLscene.js', 
                 'MySceneGraph.js', 
                 'MyInterface.js', 
@@ -19,6 +21,7 @@ serialInclude(['../lib/CGF.js',
                 'Primitives/MyRectangle.js', 
                 'Primitives/MyCylinder.js',
                 'Primitives/MyBoard.js',
+                'Primitives/MyPieces.js',
                 'Primitives/MyCylinder2.js',
                 'Primitives/MyPatch.js',
                 'Primitives/MyPlane.js',
@@ -27,6 +30,10 @@ serialInclude(['../lib/CGF.js',
                 'Primitives/MyTorus.js',
                 'Animations/Animation.js',
                 'Animations/KeyframeAnimation.js',
+                'CGFOBJModel.js',
+                'CGFResourceReader.js',
+                'GameInterface.js',
+                'InterfaceComponent.js',
 
 
 main=function()
