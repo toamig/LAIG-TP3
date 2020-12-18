@@ -157,6 +157,7 @@ class XMLscene extends CGFscene {
     }
 
     update(time){
+        this.currentTime = time;
 		this.deltaTime = (time - this.lastTime)/1000 || 0;
         this.lastTime = time;
 
@@ -164,7 +165,10 @@ class XMLscene extends CGFscene {
             this.graph.animations[key].update(this.deltaTime);
         }
 
-        this.gameInterface.updateScore();
+        if(this.gameInterface){
+            this.gameInterface.updateScore();
+            this.gameInterface.update(time);
+        }
 
     }
 

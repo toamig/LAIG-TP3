@@ -7,7 +7,7 @@ class GameInterface {
         this.init();
         this.update(0);
     };
-
+    //TODO: fix time reset after turn play
     init() {
 
         this.maxTurnTime = 30;
@@ -132,12 +132,12 @@ class GameInterface {
     };
 
     update(deltaTime) {
-        if (this.game.inited && !this.game.terminated && !this.game.animationRunning) {
-            this.turnTime -= deltaTime;
-            if (this.turnTime > 0) {
+        if (this.game.inited && !this.game.terminated /*&& !this.game.animationRunning*/) {
+            this.turnTime = deltaTime - this.startTime;
+            
+            if (this.turnTime > 0 && this.turnTime < (this.maxTurnTime * 1000)) {
                 let seconds = Math.floor((this.turnTime % (1000 * 60)) / 1000);
                 let minutes = Math.floor((this.turnTime % (1000 * 60 * 60)) / (1000 * 60));
-
                 this.ui_elements["minutes0"].texture = this.timer_textures[Math.floor(minutes / 10)];
                 this.ui_elements["minutes1"].texture = this.timer_textures[minutes % 10];
                 this.ui_elements["seconds0"].texture = this.timer_textures[Math.floor(seconds / 10)];
@@ -160,6 +160,7 @@ class GameInterface {
     }
 
     initTimer() {
+        this.startTime = this.scene.currentTime;
         this.timer_textures = [];
         for (let i = 0; i < 10; i++) {
             this.timer_textures[i] = new CGFtexture(this.scene, "scenes/images/" + i + ".png");
@@ -198,6 +199,6 @@ class GameInterface {
     }
 
     resetTimer() {
-        this.turnTime = (this.maxTurnTime + 1) * 1000;
+        this.turnTime = this.scene.currentTime;
     }
 }
